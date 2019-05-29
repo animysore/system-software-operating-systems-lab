@@ -1,16 +1,21 @@
 %{
 	#include <stdio.h>
 	#include <stdlib.h>
+	int c = 0, n;
 %}
-%token A B
+%token A B NUM NL
 %%
-ans: T B
-T: A T | A {;}
+ans: NUM NL T B NL {n=$1;}
+T: A T {c++;}
+| A {c++;}
 %%
 main() {
-	printf("Enter exp: ");
+	printf("Enter Num followed by Exp: ");
 	yyparse();
-	printf("Valid exp\n");
+	if(c==n)
+		printf("Valid exp\n");
+	else
+		printf("Invalid exp\n");
 }
 int yyerror() {
 	printf("invalid\n");

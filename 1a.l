@@ -4,10 +4,11 @@
 %}
 %%
 [0-9]+[0-9|A-Z|a-z|_]* {;}
-[a-z|A-Z|_]{1}[0-9|A-Z|a-z|_]* {id++;}
-[\+|\-|\*|\/|\%] {op++;}
+[a-z|A-Z|_]{1}[0-9|A-Z|a-z|_]* {printf("\nIdentifier: "); ECHO; id++;}
+[\+|\-|\*|\/|\%] {printf("\nOperator: "); ECHO; op++;}
 %%
-main(int argc, char** argv) {
+int main(int argc, char** argv) {
+	printf("Enter expression: ");
 	yylex();
 	printf("Identifiers: %d\nOperators: %d\n",id,op);
-}
+} 

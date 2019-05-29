@@ -19,7 +19,7 @@ char* strstr1(char* stack, char* rule)
     for(int start=strlen(stack)-strlen(rule),i=0;start<=lenofstack;start++,i++)
     {
         if(stack[start]!=rule[i])
-            return '\0';
+            return NULL;
     }
     return rule;
 }
@@ -34,7 +34,7 @@ int canbereduced()
         p=strstr1(stack,rules[i]);
         if(p)
         {
-            if((i==0 && a[ipr]!='$')||(i==2&&a[ipr]=='*'&&stack[top]=='T'))
+            if((i==0 && a[ipr]=='*')||(i==2&&a[ipr]=='*'))
                 return 0;
             else
             {
@@ -51,11 +51,8 @@ int canbereduced()
 int main()
 {
     printf("STACK\tI/P\tACTION\n");
-    char temp[20];
     while(1)
     {
-        strcpy(temp,"");
-        strncpy(temp,stack,top);
         printf("%s\t%s\t",stack,a+ipr);
         if(stack[top]=='E'&&stack[top-1]=='$'&&a[ipr]=='$')
         {

@@ -13,7 +13,7 @@ input: DIGIT input { dig++;}
 | OP  {op++;}
 | ID {id++;}
 | KEY {key++;}
-; 
+;
 %%
 extern FILE* yyin;
 main(int argc, char * argv[]) {

@@ -14,13 +14,13 @@ void roundrobin() {
     int ct = 0, pindex=1, tatsum=0, wtsum=0, timeleft=((bt[0]>=tq)?tq:bt[0]);
     node *head=NULL, *temp=NULL, *tail=NULL;
 
-    head = new node;
-    head->pi = 0;
-    head->next = NULL;
+    head = new node;    // create the first process 
+    head->pi = 0;       // with process index 0
+    head->next = NULL; 
     tail = head;
-    while(true) { 
+    while(true) {
         cout<<"=======\nTime:"<<ct<<" Counter: "<<timeleft<<endl; 
-        // if current time matches a process, 
+        // 1. check if a process is arriving at the current time,
         if( pindex<n && ct == at[pindex]) {
             cout<<"Arrived: Process "<<pindex+1<<endl; 
             // creating a new node and append into queue 
@@ -38,7 +38,7 @@ void roundrobin() {
             }
             pindex++;
         }
-        // if timer rings, finish the current process and start new one 
+        // 2. check if timer is up, then finish the current process 
         if(timeleft==0) {
             int i = head->pi; 
             cout<<"Processed "<<i+1;
@@ -67,13 +67,14 @@ void roundrobin() {
         }
         if (head==NULL) break;
         else {
+            // 3. Start a new process if timer up 
             if(timeleft == 0) { 
                 int j = head->pi;
                 timeleft = (rbt[j]<tq)?rbt[j]:tq;
                 cout<<"Starting "<<head->pi+1<<" with counter="<<timeleft<<endl;
             }
         }
-        
+        // Increase the time, decrease time left
         ct++; timeleft--;
     }
     cout<<"\n+++\nAverage Turn around time = "<<(float)tatsum/n <<"\nAverage wait time = "<<(float)wtsum/n<<endl;    
@@ -172,8 +173,8 @@ int main() {
     }
 
     cout<<"Round Robin: \n";
-    roundrobin();
+    //roundrobin();
     cout<<"Shortest Time: \n";
-    //shortesttime();
+    shortesttime();
     return 0;
 }

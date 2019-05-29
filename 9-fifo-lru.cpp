@@ -8,17 +8,17 @@ class Page {
 
 using namespace std;
 
-Page * Table;
 int tsize, n, *inputs, pagefaults=0;
-    
+
 void FIFO() {
     int front=-1, found;
-    for (int i=0; i<tsize; i++) Table[i].value = -1;
+    Page * Table = new Page[n]();
+    for (int i=0; i<tsize; i++) Table[i].value = -1;   // initialize each page to -1
     for (int i=0; i<n; i++) {
         // search to see if already in page table
         found = 0;
         if (front>=0) { 
-            for (int j=0; j<tsize; j++) { 
+            for (int j=0; j<tsize; j++) {
                 if(Table[j].value == inputs[i]) { 
                     found = 1;
                     break;
@@ -42,7 +42,6 @@ void LRU() {
     for ( int i=0; i<n; i++) { 
         // search to see if already in page table
         found = 0;
-        //cout<<inputs[i]<<endl;
         if (front!=nullptr) {
             prev = front;
             curr = front;
@@ -86,7 +85,6 @@ int main() {
     bool choice;
     cout<<"Enter size of page table and number of inputs: \n";
     cin>>tsize>>n;
-    Table = new Page[n]();
     inputs = new int[n];
     cout<<"Enter values: \n";
     for (int i=0; i<n; i++) { 
@@ -94,7 +92,7 @@ int main() {
     }
     cout<<"FIFO or LRU?";
     cin>>choice;
-    (choice) ? FIFO() : LRU();
+    (choice==1) ? FIFO() : LRU();
     cout<<"Page faults: "<<pagefaults<<endl; 
     return 0;
 }

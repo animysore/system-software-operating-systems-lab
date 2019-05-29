@@ -1,9 +1,9 @@
 %{
 	#include "y.tab.h" 
-	extern yylval;
+	extern int yylval;
 %}
 %%
 [0-9]* {yylval=atoi(yytext);return NUM;}
-[\+|\-|\*|\/|\%] {yylval=atoi(yytext); return PLUS;}
+[\+|\-|\*|\/|\%] {yylval=yytext[0]; return OP;}
 %%
 

@@ -34,7 +34,6 @@ int main(int argc, char * argv[]) {
 
     cout<<"Enter number of processes and resources\n";
     cin>>p>>r;
-    cout
     Max = new int[p*r];
     alloc = new int[p*r];
     need = new int[p*r];

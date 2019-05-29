@@ -30,3 +30,8 @@
 *.exe
 *.out
 *.app
+
+.vscode/*
+lex.yy.c
+y.tab.c
+y.tab.h
