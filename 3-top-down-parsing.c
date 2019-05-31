@@ -93,27 +93,28 @@ void maketable(int rno)
 void stackcall()
 {
     int k;
+    printf("Stack\tInput\tProd\n");
     while(!(stack[stop]=='$' && ip[ipr]=='$'))
     {
-        printf("Stack: ");
-        for(k=stop;k>=0;k--)    printf("%c",stack[k]);
+        for(k=stop;k>=0;k--)    printf("%c",stack[k]); // print stack
 
-        printf("\tinput %s\t",ip+ipr);
+        printf("\t%s\t",ip+ipr);    // print input remaining
+
         if(ip[ipr]=='a' && stack[stop]=='A')
         {
-            printf("prod: %s\n",r[0].rule[0]);
+            printf("%s\n",r[0].rule[0]);
             stop--;
             stack[++stop]='a';stack[++stop]='B';stack[++stop]='a';
         }
         else if(stack[stop]=='B' && ip[ipr]=='b')
         {
-            printf("prod: %s\n",r[1].rule[0]);
+            printf("%s\n",r[1].rule[0]);
             stop--;
             stack[++stop]='B';stack[++stop]='b';
         }
         else if(stack[stop]=='B' && ip[ipr]=='a')
         {
-            printf("prod: %s\n",r[1].rule[1]);
+            printf("%s\n",r[1].rule[1]);
             stop--;
         }
         if((stack[stop]==ip[ipr])&&stack[stop]!='$')
@@ -122,7 +123,7 @@ void stackcall()
             ipr++;
         }
     }
-    printf("Stack: $\tinput: $\tprod: \n");
+    printf("$\t$\t \n");
     printf("String accepted.\n");
 }
 

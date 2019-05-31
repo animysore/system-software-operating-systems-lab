@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void main()
+int main()
 {
     FILE *ip=fopen("ip.txt","r");
     FILE *op=fopen("op.txt","w");
@@ -30,7 +30,7 @@ void main()
         }
         else if(opr=='=')
         {
-            fprintf(op,"MOV %c,%c\n",arg1,arg2);
+            fprintf(op,"MOV %c,T%c\n",arg1,arg2);
         }
-    }            
+    }   
 }
